@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Tablas 4° Básico 🌟 - Aprendizaje Interactivo</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="Sistema/IMAGEN/logo.svg">
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="Sistema/CSS/variables.css">
+    <link rel="stylesheet" href="Sistema/CSS/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <!-- Formas decorativas de fondo -->
+        <div class="bg-shape bg-shape-1"></div>
+        <div class="bg-shape bg-shape-2"></div>
+
+        <main class="login-card">
+            <!-- Header Marca & Logo -->
+            <header class="brand-header">
+                <div class="brand-logo anim-float">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </div>
+                <h1 class="brand-title">Mis Tablas 4° Básico 🚀</h1>
+                <p class="brand-subtitle">✨ ¡Aprende las tablas jugando y prepárate para el SIMCE! 🎮</p>
+            </header>
+
+            <!-- Formulario de Ingreso del Estudiante -->
+            <form id="loginForm" onsubmit="return false;">
+                <!-- Campo Nombre -->
+                <div class="form-group">
+                    <label for="studentNameInput" class="form-label">
+                        <span>✏️</span> Escribe tu nombre o apodo:
+                    </label>
+                    <input 
+                        type="text" 
+                        id="studentNameInput" 
+                        class="input-field" 
+                        placeholder="Ej. Sofía, Mateo, Lucas..." 
+                        maxlength="25"
+                        autocomplete="off"
+                        required
+                    >
+                </div>
+
+                <!-- Selección de Avatar -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <span>🦸‍♂️</span> Elige tu Avatar Matemático:
+                    </label>
+                    <div class="avatar-grid" id="avatarGrid">
+                        <!-- Avatares inyectados dinámicamente por login.js -->
+                    </div>
+                </div>
+
+                <!-- Botón de Ingreso -->
+                <button type="button" id="btnEnter" class="btn-submit anim-pulse">
+                    <span>¡A JUGAR Y APRENDER!</span> ⭐
+                </button>
+            </form>
+        </main>
+    </div>
+
+    <!-- Mensaje Toast de Alerta/Error -->
+    <div id="toastMsg" class="toast-msg"></div>
+
+    <!-- Scripts JS -->
+    <script src="Sistema/JS/audio.js"></script>
+    <script src="Sistema/JS/state.js"></script>
+    <script src="Sistema/JS/login.js"></script>
+</body>
+</html>

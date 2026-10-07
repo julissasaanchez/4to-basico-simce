@@ -1,0 +1,219 @@
+/* MÓDULO APRENDER TABLAS - MODO CLARO E INTERACTIVO - MIS TABLAS 4° BÁSICO */
+
+.learn-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    background: white;
+    padding: 18px 24px;
+    border-radius: var(--radius-lg);
+    border: 3px solid rgba(99, 102, 241, 0.12);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.03);
+}
+
+.table-selector-pills {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+}
+
+.pill-table-btn {
+    padding: 10px 18px;
+    border-radius: 20px;
+    background: #f1f5f9;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    font-weight: 700;
+    border: 2px solid transparent;
+    transition: all var(--transition-bounce);
+}
+
+.pill-table-btn:hover {
+    background: #e0e7ff;
+    color: var(--primary);
+}
+
+.pill-table-btn.active {
+    background: var(--gold-gradient);
+    color: #78350f;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+    border-color: #fde047;
+}
+
+/* Arena de Exploración de la Tabla */
+.learn-workspace {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+@media (max-width: 960px) {
+    .learn-workspace {
+        grid-template-columns: 1fr;
+    }
+}
+
+.learn-card-interactive {
+    background: white;
+    border: 3px solid rgba(99, 102, 241, 0.15);
+    border-radius: var(--radius-xl);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 12px 28px rgba(99, 102, 241, 0.1);
+}
+
+.equation-display {
+    font-size: 3.2rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    margin: 18px 0;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--text-dark);
+}
+
+.eq-number {
+    background: #f1f5f9;
+    padding: 6px 22px;
+    border-radius: var(--radius-md);
+    border: 3px solid #cbd5e1;
+    color: var(--primary);
+}
+
+.eq-times { color: var(--secondary); }
+.eq-equals { color: var(--accent-orange); }
+.eq-result {
+    color: #047857;
+    background: #dcfce7;
+    border-color: #86efac;
+}
+
+/* Representación Gráfica de Objetos */
+.visual-groups-container {
+    width: 100%;
+    min-height: 220px;
+    background: #f8fafc;
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 15px;
+    border: 3px dashed #cbd5e1;
+}
+
+.group-box {
+    background: #e0e7ff;
+    border: 3px solid #818cf8;
+    border-radius: var(--radius-md);
+    padding: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    animation: popIn 0.3s ease-out;
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.15);
+}
+
+.item-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+/* Slider de Multiplicador */
+.slider-container {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.multiplier-slider {
+    width: 100%;
+    height: 14px;
+    -webkit-appearance: none;
+    background: #e2e8f0;
+    border-radius: 8px;
+    outline: none;
+}
+
+.multiplier-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--gold-gradient);
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+    transition: transform 0.2s;
+    border: 3px solid white;
+}
+
+.multiplier-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.25);
+}
+
+/* Tarjeta de Patrones */
+.pattern-card {
+    background: linear-gradient(145deg, #ffffff 0%, #f3e8ff 100%);
+    border: 3px solid #d8b4fe;
+    border-radius: var(--radius-xl);
+    padding: 30px;
+    text-align: left;
+    box-shadow: 0 12px 28px rgba(147, 51, 234, 0.1);
+}
+
+.pattern-title {
+    font-size: 1.5rem;
+    color: var(--accent-purple);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pattern-text {
+    font-size: 1.1rem;
+    color: var(--text-main);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.table-sequence-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.seq-item {
+    background: white;
+    border: 2px solid #e2e8f0;
+    padding: 10px 4px;
+    border-radius: var(--radius-sm);
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.seq-item.active-seq {
+    background: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: white !important;
+    box-shadow: 0 6px 14px rgba(79, 70, 229, 0.3) !important;
+}

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema 🎮 - Mis Tablas 4° Básico</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="IMAGEN/logo.svg">
+
+    <!-- Hojas de Estilo CSS -->
+    <link rel="stylesheet" href="CSS/variables.css">
+    <link rel="stylesheet" href="CSS/sistema.css">
+    <link rel="stylesheet" href="CSS/aprender.css">
+    <link rel="stylesheet" href="CSS/juegos.css">
+    <link rel="stylesheet" href="CSS/simce.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header Superior / Barra de Perfil -->
+        <header class="top-header">
+            <div class="brand-mini">
+                <div class="brand-mini-icon anim-float">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </div>
+                <span class="brand-title-mini">Mis Tablas 4° Básico 🌟</span>
+            </div>
+
+            <!-- Perfil del Estudiante & Estadísticas Rápidas -->
+            <div class="user-profile-badge">
+                <div class="profile-avatar-wrapper">
+                    <div id="profileAvatarIcon" class="profile-avatar-img" style="display:flex; align-items:center; justify-content:center; font-size:1.6rem;">🦉</div>
+                </div>
+                <div class="profile-info">
+                    <div id="profileStudentName" class="profile-name">Estudiante</div>
+                    <div id="profileLevel" class="profile-level">Nivel 1 - Principiante</div>
+                </div>
+                <div class="stat-pill">
+                    <span>⭐</span>
+                    <span id="profileStarsCount">0</span>
+                </div>
+                <button id="btnLogout" class="btn-icon" title="Salir / Cambiar Estudiante">🚪</button>
+            </div>
+        </header>
+
+        <!-- Layout Principal: Sidebar + Contenido Central -->
+        <div class="main-wrapper">
+            <!-- Menú Navegación Lateral -->
+            <nav class="sidebar-nav">
+                <button class="nav-btn active" data-view="view-menu">
+                    <span class="nav-icon">🗺️</span>
+                    <span>Mapa de Misiones</span>
+                </button>
+                <button class="nav-btn" data-view="view-aprender">
+                    <span class="nav-icon">💡</span>
+                    <span>Aprender Tablas</span>
+                </button>
+                <button class="nav-btn" data-view="view-juegos">
+                    <span class="nav-icon">🎮</span>
+                    <span>Juegos y Desafíos</span>
+                </button>
+                <button class="nav-btn" data-view="view-progreso">
+                    <span class="nav-icon">🏆</span>
+                    <span>Mi Progreso</span>
+                </button>
+                <button class="nav-btn" data-view="view-simce">
+                    <span class="nav-icon">🎓</span>
+                    <span>Ensayo SIMCE</span>
+                    <span class="nav-badge">4°</span>
+                </button>
+            </nav>
+
+            <!-- Área de Contenido Central (Vistas Dinámicas) -->
+            <main class="content-area">
+                
+                <!-- ==================== VISTA 1: MENÚ / MAPA DE MISIONES ==================== -->
+                <section id="view-menu" class="view-section active">
+                    <!-- Banner de Bienvenida -->
+                    <div class="welcome-banner">
+                        <div class="welcome-text">
+                            <h2>¡Bienvenido a tu Aventura Matemática! 🚀✨</h2>
+                            <p>Domina las tablas del 2 al 10 para ganar estrellas y desbloquear el gran Ensayo SIMCE.</p>
+                            
+                            <div class="overall-progress-bar-container">
+                                <div class="progress-label">
+                                    <span>🌟 Avance de Tablas Dominadas</span>
+                                    <span id="overallProgressPercent">0%</span>
+                                </div>
+                                <div class="progress-track">
+                                    <div id="overallProgressFill" class="progress-fill" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grid de Tablas (Camino de Misiones) -->
+                    <div class="section-header">
+                        <h3 class="section-title">🗺️ Camino de Misiones (Tablas 2 al 10)</h3>
+                    </div>
+                    <div class="tables-grid" id="tablesGridContainer">
+                        <!-- Tarjetas inyectadas por menu.js -->
+                    </div>
+                </section>
+
+                <!-- ==================== VISTA 2: APRENDER TABLAS ==================== -->
+                <section id="view-aprender" class="view-section">
+                    <div class="learn-header-bar">
+                        <h3 class="section-title">💡 Explorador Visual de Multiplicación</h3>
+                        <div class="table-selector-pills" id="tablePillsContainer">
+                            <!-- Botones de Tabla 2 a 10 inyectados por aprender.js -->
+                        </div>
+                    </div>
+
+                    <div class="learn-workspace">
+                        <!-- Tarjeta Interactiva de Ecuación y Representación -->
+                        <div class="learn-card-interactive">
+                            <h4 style="color:var(--text-muted); font-size:1.15rem;">🍎 Representación en Grupos de Objetos</h4>
+                            
+                            <div class="equation-display" id="equationDisplay">
+                                <span class="eq-number">2</span>
+                                <span class="eq-times">×</span>
+                                <span class="eq-number">1</span>
+                                <span class="eq-equals">=</span>
+                                <span class="eq-number eq-result">2</span>
+                            </div>
+
+                            <div class="visual-groups-container" id="visualGroupsContainer">
+                                <!-- Grupos de objetos e iconos rendered -->
+                            </div>
+
+                            <div class="slider-container">
+                                <label style="display:block; margin-bottom:8px; font-weight:700; color:var(--text-dark);">👇 Desliza para cambiar la cantidad:</label>
+                                <input type="range" min="1" max="10" value="1" class="multiplier-slider" id="multiplierSlider">
+                            </div>
+
+                            <button id="btnPracticarTabla" class="btn-submit" style="margin-top:20px; width:auto; padding:14px 32px; font-size:1.15rem;">
+                                ¡Marcar Tabla como Dominada! ⭐
+                            </button>
+                        </div>
+
+                        <!-- Tarjeta de Patrones y Trucos Secretos -->
+                        <div class="pattern-card">
+                            <h4 class="pattern-title" id="patternTitle">☘️ Truco de la Tabla</h4>
+                            <p class="pattern-text" id="patternDesc">Cargando secreto matemático...</p>
+                            
+                            <h5 style="color:var(--primary); margin-bottom:8px; font-size:1.1rem;">🔢 Secuencia Completa (1 al 10):</h5>
+                            <div class="table-sequence-grid" id="tableSeqGrid">
+                                <!-- Secuencia 1x a 10x -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==================== VISTA 3: JUEGOS Y DESAFÍOS ==================== -->
+                <section id="view-juegos" class="view-section">
+                    <div class="games-header">
+                        <h3 class="section-title">🎮 Central de Minijuegos Didácticos</h3>
+                        <p style="color:var(--text-muted); font-size:1.1rem;">Elige un desafío divertido para poner a prueba tu agilidad mental.</p>
+                    </div>
+
+                    <!-- Menú de Selección de Minijuegos -->
+                    <div class="games-menu-grid" id="gamesMenuGrid">
+                        <div class="game-card-select" onclick="startJuegoMemoria()">
+                            <div class="game-card-icon" style="background:var(--pink-gradient);">🧠</div>
+                            <div class="game-card-title">Memoria Matemática</div>
+                            <div class="game-card-desc">Encuentra las parejas entre multiplicaciones y sus resultados correctos.</div>
+                        </div>
+
+                        <div class="game-card-select" onclick="startJuegoAtrapa()">
+                            <div class="game-card-icon" style="background:var(--cyan-gradient);">🎈</div>
+                            <div class="game-card-title">Atrapa el Resultado</div>
+                            <div class="game-card-desc">Toca rápidamente la burbuja flotante que contenga la respuesta correcta.</div>
+                        </div>
+
+                        <div class="game-card-select" onclick="startJuegoPersonajes()">
+                            <div class="game-card-icon" style="background:var(--gold-gradient);">🧙‍♂️</div>
+                            <div class="game-card-title">¿Quién tiene la respuesta?</div>
+                            <div class="game-card-desc">Descubre cuál personaje sostiene el número correcto antes de equivocarte.</div>
+                        </div>
+
+                        <div class="game-card-select" onclick="startJuegoTiempo()">
+                            <div class="game-card-icon" style="background:var(--purple-gradient);">⚡</div>
+                            <div class="game-card-title">Desafío contra el Tiempo</div>
+                            <div class="game-card-desc">Responde la mayor cantidad de operaciones posibles antes de que terminen los 30s.</div>
+                        </div>
+
+                        <div class="game-card-select" onclick="startJuegoDetective()">
+                            <div class="game-card-icon" style="background:var(--green-gradient);">🕵️</div>
+                            <div class="game-card-title">Detective Matemático</div>
+                            <div class="game-card-desc">Analiza las pistas secretas para adivinar cuál es el número misterioso oculto.</div>
+                        </div>
+                    </div>
+
+                    <!-- Arena de Juego Activa -->
+                    <div class="game-arena-container" id="gameArenaContainer" style="display:none;">
+                        <div class="game-top-bar">
+                            <button class="btn-icon" onclick="showGamesMenu()">⬅️ Volver a Juegos</button>
+                            <h4 id="arenaTitle" style="color:var(--primary); font-size:1.5rem;">Juego en Curso</h4>
+                            <div class="game-score-badge" id="gameScoreDisplay">Puntos: 0</div>
+                        </div>
+
+                        <div id="gameDynamicContent" style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+                            <!-- Elementos del juego activo -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==================== VISTA 4: MI PROGRESO Y LOGROS ==================== -->
+                <section id="view-progreso" class="view-section">
+                    <div class="section-header">
+                        <h3 class="section-title">🏆 Salón de Trofeos y Estadísticas</h3>
+                    </div>
+
+                    <!-- Resumen de Estadísticas -->
+                    <div class="welcome-banner" style="background:linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%); border-color:#86efac; margin-bottom:25px;">
+                        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:20px; width:100%; text-align:center;">
+                            <div>
+                                <div style="font-size:2.4rem; font-weight:800; color:var(--accent-yellow);" id="statsTotalPts">0</div>
+                                <div style="font-size:0.95rem; font-weight:700; color:var(--text-muted);">Puntos Totales</div>
+                            </div>
+                            <div>
+                                <div style="font-size:2.4rem; font-weight:800; color:var(--accent-yellow);" id="statsTotalStars">0</div>
+                                <div style="font-size:0.95rem; font-weight:700; color:var(--text-muted);">Estrellas</div>
+                            </div>
+                            <div>
+                                <div style="font-size:2.4rem; font-weight:800; color:var(--primary);" id="statsLevel">Nivel 1</div>
+                                <div style="font-size:0.95rem; font-weight:700; color:var(--text-muted);">Nivel de Rango</div>
+                            </div>
+                            <div>
+                                <div style="font-size:2.4rem; font-weight:800; color:var(--accent-green);" id="statsSimceBest">--</div>
+                                <div style="font-size:0.95rem; font-weight:700; color:var(--text-muted);">Mejor SIMCE</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 style="color:var(--text-dark); margin-bottom:15px; font-size:1.4rem;">Insignias y Medallas Desbloqueadas:</h4>
+                    <div class="tables-grid" id="logrosGrid">
+                        <!-- Galería inyectada por progreso.js -->
+                    </div>
+                </section>
+
+                <!-- ==================== VISTA 5: ENSAYO SIMCE ==================== -->
+                <section id="view-simce" class="view-section">
+                    <div class="section-header" style="margin-bottom:15px;">
+                        <h3 class="section-title">🎓 Ensayo de Preparación Matemáticas SIMCE 4° Básico</h3>
+                        <p style="color:var(--text-muted); font-size:1.1rem;">Resuelve las 10 situaciones problemáticas contextualizadas.</p>
+                    </div>
+
+                    <div class="simce-container">
+                        <!-- Sidebar Lateral con Preguntas 1 al 10 -->
+                        <aside class="simce-sidebar">
+                            <div class="simce-sidebar-title">
+                                <span>📋</span>
+                                <span>Lista de Preguntas</span>
+                            </div>
+                            
+                            <div class="question-nav-grid" id="simceQuestionNavGrid">
+                                <!-- Botones 1 a 10 inyectados por simce.js -->
+                            </div>
+
+                            <div class="simce-progress-status" id="simceAnsweredStatusText">
+                                Respondidas: 0 de 10
+                            </div>
+                        </aside>
+
+                        <!-- Tarjeta Principal de Pregunta Activa -->
+                        <main class="simce-main-card">
+                            <div>
+                                <div class="simce-context-box" id="simceContextBox">
+                                    📌 Contexto del problema...
+                                </div>
+
+                                <div class="simce-question-text" id="simceQuestionText">
+                                    Pregunta 1: ...
+                                </div>
+
+                                <div class="simce-options-grid" id="simceOptionsGrid">
+                                    <!-- Alternativas A, B, C, D inyectadas por simce.js -->
+                                </div>
+                            </div>
+
+                            <!-- Barra Inferior de Navegación de Examen -->
+                            <div class="simce-nav-footer">
+                                <button class="btn-simce-next" id="btnSimceNext">Siguiente Pregunta ➡️</button>
+                                <button class="btn-simce-finish" id="btnSimceFinish">Finalizar Ensayo SIMCE 🎓</button>
+                            </div>
+                        </main>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Carga de Scripts JavaScript -->
+    <script src="JS/audio.js"></script>
+    <script src="JS/state.js"></script>
+    <script src="JS/menu.js"></script>
+    <script src="JS/aprender.js"></script>
+    <script src="JS/juegos.js"></script>
+    <script src="JS/progreso.js"></script>
+    <script src="JS/simce.js"></script>
+</body>
+</html>

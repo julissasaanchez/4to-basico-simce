@@ -1,0 +1,131 @@
+/* VARIABLES Y SISTEMA DE DISEÑO CLARO E INFANTIL - MIS TABLAS 4° BÁSICO */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+    /* Paleta Principal Pastel & Viva */
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --primary-light: #818cf8;
+    --secondary: #ec4899;
+    --secondary-hover: #db2777;
+    
+    /* Colores Infantiles Pastel */
+    --pastel-sky: #e0f2fe;
+    --pastel-pink: #fce7f3;
+    --pastel-yellow: #fef3c7;
+    --pastel-green: #dcfce7;
+    --pastel-purple: #f3e8ff;
+    --pastel-orange: #ffedd5;
+
+    /* Acentos Vivos */
+    --accent-yellow: #f59e0b;
+    --accent-green: #10b981;
+    --accent-cyan: #0284c7;
+    --accent-purple: #9333ea;
+    --accent-orange: #f97316;
+
+    /* Gradientes Luminosos y Alegres */
+    --bg-gradient: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 35%, #fce7f3 70%, #fef3c7 100%);
+    --card-gradient: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+    --card-hover-gradient: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
+    --gold-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    --green-gradient: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+    --pink-gradient: linear-gradient(135deg, #f472b6 0%, #ec4899 100%);
+    --cyan-gradient: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+    --purple-gradient: linear-gradient(135deg, #c084fc 0%, #9333ea 100%);
+
+    /* Modos Claros Legibles para Niños */
+    --bg-light: #f8fafc;
+    --panel-bg: rgba(255, 255, 255, 0.92);
+    --panel-border: rgba(99, 102, 241, 0.18);
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --text-dark: #0f172a;
+
+    /* Sombras Suaves Esponjosas */
+    --soft-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+    --hover-shadow: 0 20px 30px -10px rgba(99, 102, 241, 0.22);
+    --glow-gold: 0 0 20px rgba(245, 158, 11, 0.4);
+    --glow-green: 0 0 20px rgba(16, 185, 129, 0.3);
+    
+    /* Tipografía */
+    --font-heading: 'Fredoka', cursive, sans-serif;
+    --font-body: 'Outfit', sans-serif;
+
+    /* Bordes Redondeados e Infantiles */
+    --radius-sm: 12px;
+    --radius-md: 20px;
+    --radius-lg: 28px;
+    --radius-xl: 36px;
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Resets y Base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg-gradient);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: 0.3px;
+    color: var(--text-dark);
+}
+
+button {
+    font-family: var(--font-heading);
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: transform var(--transition-bounce), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+button:active {
+    transform: scale(0.95) !important;
+}
+
+/* Animaciones Infantiles Reutilizables */
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+}
+
+@keyframes popIn {
+    0% { opacity: 0; transform: scale(0.7); }
+    70% { transform: scale(1.06); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.anim-float { animation: float 3.5s ease-in-out infinite; }
+.anim-pulse { animation: pulseGlow 2.2s ease-in-out infinite; }
+.anim-pop { animation: popIn var(--transition-bounce) forwards; }
+.anim-wiggle { animation: wiggle 2s ease-in-out infinite; }
