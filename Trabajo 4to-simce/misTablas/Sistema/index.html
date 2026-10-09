@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema 🎮 - Mis Tablas 4° Básico</title>
+    <title>La Leyenda de los Héroes Matemáticos 🗺️ - Mapa de Aventura</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="IMAGEN/logo.svg">
@@ -14,10 +14,12 @@
     <link rel="stylesheet" href="CSS/aprender.css">
     <link rel="stylesheet" href="CSS/juegos.css">
     <link rel="stylesheet" href="CSS/simce.css">
+    <link rel="stylesheet" href="CSS/modales.css">
+    <link rel="stylesheet" href="CSS/efectos.css">
 </head>
 <body>
     <div class="app-container">
-        <!-- Header Superior / Barra de Perfil -->
+        <!-- Header Superior / Perfil del Héroe -->
         <header class="top-header">
             <div class="brand-mini">
                 <div class="brand-mini-icon anim-float">
@@ -25,33 +27,33 @@
                         <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
                     </svg>
                 </div>
-                <span class="brand-title-mini">Mis Tablas 4° Básico 🌟</span>
+                <span class="brand-title-mini">Héroes Matemáticos 🗺️</span>
             </div>
 
-            <!-- Perfil del Estudiante & Estadísticas Rápidas -->
+            <!-- Perfil del Héroe & Cristal de Energía -->
             <div class="user-profile-badge">
                 <div class="profile-avatar-wrapper">
-                    <div id="profileAvatarIcon" class="profile-avatar-img" style="display:flex; align-items:center; justify-content:center; font-size:1.6rem;">🦉</div>
+                    <div id="profileAvatarIcon" class="profile-avatar-img" style="display:flex; align-items:center; justify-content:center; overflow:hidden;">🦊</div>
                 </div>
                 <div class="profile-info">
-                    <div id="profileStudentName" class="profile-name">Estudiante</div>
-                    <div id="profileLevel" class="profile-level">Nivel 1 - Principiante</div>
+                    <div id="profileStudentName" class="profile-name">Héroe</div>
+                    <div id="profileLevel" class="profile-level">Nivel 1 - Zorrito Explorador</div>
                 </div>
                 <div class="stat-pill">
                     <span>⭐</span>
                     <span id="profileStarsCount">0</span>
                 </div>
-                <button id="btnLogout" class="btn-icon" title="Salir / Cambiar Estudiante">🚪</button>
+                <button id="btnLogout" class="btn-icon" title="Cambiar Héroe">🚪</button>
             </div>
         </header>
 
         <!-- Layout Principal: Sidebar + Contenido Central -->
         <div class="main-wrapper">
-            <!-- Menú Navegación Lateral -->
+            <!-- Menú Navegación Lateral de Aventura -->
             <nav class="sidebar-nav">
                 <button class="nav-btn active" data-view="view-menu">
                     <span class="nav-icon">🗺️</span>
-                    <span>Mapa de Misiones</span>
+                    <span>Mapa de Mundos</span>
                 </button>
                 <button class="nav-btn" data-view="view-aprender">
                     <span class="nav-icon">💡</span>
@@ -59,15 +61,15 @@
                 </button>
                 <button class="nav-btn" data-view="view-juegos">
                     <span class="nav-icon">🎮</span>
-                    <span>Juegos y Desafíos</span>
+                    <span>Desafíos & Misiones</span>
                 </button>
                 <button class="nav-btn" data-view="view-progreso">
                     <span class="nav-icon">🏆</span>
-                    <span>Mi Progreso</span>
+                    <span>Salón de Trofeos</span>
                 </button>
                 <button class="nav-btn" data-view="view-simce">
-                    <span class="nav-icon">🎓</span>
-                    <span>Ensayo SIMCE</span>
+                    <span class="nav-icon">🐉</span>
+                    <span>Guardián Sabio (SIMCE)</span>
                     <span class="nav-badge">4°</span>
                 </button>
             </nav>
@@ -75,17 +77,17 @@
             <!-- Área de Contenido Central (Vistas Dinámicas) -->
             <main class="content-area">
                 
-                <!-- ==================== VISTA 1: MENÚ / MAPA DE MISIONES ==================== -->
+                <!-- ==================== VISTA 1: MAPA DE MUNDOS Y PORTALES ==================== -->
                 <section id="view-menu" class="view-section active">
                     <!-- Banner de Bienvenida -->
-                    <div class="welcome-banner">
+                    <div class="welcome-banner" style="background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%); border-color:var(--crystal-purple);">
                         <div class="welcome-text">
-                            <h2>¡Bienvenido a tu Aventura Matemática! 🚀✨</h2>
-                            <p>Domina las tablas del 2 al 10 para ganar estrellas y desbloquear el gran Ensayo SIMCE.</p>
+                            <h2 style="color:var(--crystal-cyan);">¡Bienvenido a la Expedición de Mundos! 🚀✨</h2>
+                            <p style="color:rgba(255,255,255,0.9);">Completa las misiones de cada portal para conseguir cristales y avanzar al siguiente mundo.</p>
                             
                             <div class="overall-progress-bar-container">
-                                <div class="progress-label">
-                                    <span>🌟 Avance de Tablas Dominadas</span>
+                                <div class="progress-label" style="color:var(--crystal-gold);">
+                                    <span>🌟 Avance de Misiones Completadas</span>
                                     <span id="overallProgressPercent">0%</span>
                                 </div>
                                 <div class="progress-track">
@@ -95,28 +97,28 @@
                         </div>
                     </div>
 
-                    <!-- Grid de Tablas (Camino de Misiones) -->
+                    <!-- Contenedor del Mapa de Mundos (Mundo 1 al 5) -->
                     <div class="section-header">
-                        <h3 class="section-title">🗺️ Camino de Misiones (Tablas 2 al 10)</h3>
+                        <h3 class="section-title">🗺️ Mapa de la Aventura Matemáticas</h3>
                     </div>
-                    <div class="tables-grid" id="tablesGridContainer">
-                        <!-- Tarjetas inyectadas por menu.js -->
+                    <div id="worldsMapContainer">
+                        <!-- Mundos y Portales inyectados por menu.js -->
                     </div>
                 </section>
 
                 <!-- ==================== VISTA 2: APRENDER TABLAS ==================== -->
                 <section id="view-aprender" class="view-section">
                     <div class="learn-header-bar">
-                        <h3 class="section-title">💡 Explorador Visual de Multiplicación</h3>
+                        <h3 class="section-title">💡 Explorador de Cristales & Multiplicación</h3>
                         <div class="table-selector-pills" id="tablePillsContainer">
-                            <!-- Botones de Tabla 2 a 10 inyectados por aprender.js -->
+                            <!-- Botones de Tabla 2 a 10 -->
                         </div>
                     </div>
 
                     <div class="learn-workspace">
                         <!-- Tarjeta Interactiva de Ecuación y Representación -->
                         <div class="learn-card-interactive">
-                            <h4 style="color:var(--text-muted); font-size:1.15rem;">🍎 Representación en Grupos de Objetos</h4>
+                            <h4 style="color:var(--text-muted); font-size:1.15rem;">💎 Representación en Grupos de Cristales Mágicos</h4>
                             
                             <div class="equation-display" id="equationDisplay">
                                 <span class="eq-number">2</span>
@@ -127,7 +129,7 @@
                             </div>
 
                             <div class="visual-groups-container" id="visualGroupsContainer">
-                                <!-- Grupos de objetos e iconos rendered -->
+                                <!-- Grupos contables -->
                             </div>
 
                             <div class="slider-container">
@@ -136,13 +138,13 @@
                             </div>
 
                             <button id="btnPracticarTabla" class="btn-submit" style="margin-top:20px; width:auto; padding:14px 32px; font-size:1.15rem;">
-                                ¡Marcar Tabla como Dominada! ⭐
+                                ¡Dominar Esta Tabla! ⭐
                             </button>
                         </div>
 
                         <!-- Tarjeta de Patrones y Trucos Secretos -->
                         <div class="pattern-card">
-                            <h4 class="pattern-title" id="patternTitle">☘️ Truco de la Tabla</h4>
+                            <h4 class="pattern-title" id="patternTitle">☘️ Truco del Cristal</h4>
                             <p class="pattern-text" id="patternDesc">Cargando secreto matemático...</p>
                             
                             <h5 style="color:var(--primary); margin-bottom:8px; font-size:1.1rem;">🔢 Secuencia Completa (1 al 10):</h5>
@@ -156,48 +158,53 @@
                 <!-- ==================== VISTA 3: JUEGOS Y DESAFÍOS ==================== -->
                 <section id="view-juegos" class="view-section">
                     <div class="games-header">
-                        <h3 class="section-title">🎮 Central de Minijuegos Didácticos</h3>
-                        <p style="color:var(--text-muted); font-size:1.1rem;">Elige un desafío divertido para poner a prueba tu agilidad mental.</p>
+                        <h3 class="section-title">🎮 Misiones y Desafíos de Aventura</h3>
+                        <p style="color:var(--text-muted); font-size:1.1rem;">Completa las misiones por etapas para recuperar los Cristales Mágicos.</p>
                     </div>
 
-                    <!-- Menú de Selección de Minijuegos -->
+                    <!-- Menú de Selección de Minijuegos y Aventuras -->
                     <div class="games-menu-grid" id="gamesMenuGrid">
+                        <!-- JUEGO 1: EL TEMPLO DE LOS CRISTALES -->
+                        <div class="game-card-select" onclick="startJuegoTemploCristales()">
+                            <div class="game-card-icon" style="background:var(--purple-gradient);">💎</div>
+                            <div class="game-card-title">1. El Templo de los Cristales</div>
+                            <div class="game-card-desc">Desbloquea las 3 cámaras del templo resolviendo operaciones y encajando energía.</div>
+                        </div>
+
+                        <!-- JUEGO 2: EXPEDICIÓN ESPACIAL -->
+                        <div class="game-card-select" onclick="startJuegoMisionEspacial()">
+                            <div class="game-card-icon" style="background:var(--cyan-gradient);">🚀</div>
+                            <div class="game-card-title">2. Expedición por los Planetas</div>
+                            <div class="game-card-desc">Viaja por 4 planetas insertando tanques de propulsión matemática.</div>
+                        </div>
+
+                        <!-- JUEGO 3: LA GRAN CIUDAD DEL COMERCIO -->
+                        <div class="game-card-select" onclick="startJuegoSupermercado()">
+                            <div class="game-card-icon" style="background:var(--gold-gradient);">🛒</div>
+                            <div class="game-card-title">3. La Ciudad del Comercio</div>
+                            <div class="game-card-desc">Realiza compras, calcula presupuestos y vuelto en las tiendas de la ciudad.</div>
+                        </div>
+
+                        <!-- JUEGO 4: MEMORIA MÁGICA -->
                         <div class="game-card-select" onclick="startJuegoMemoria()">
                             <div class="game-card-icon" style="background:var(--pink-gradient);">🧠</div>
-                            <div class="game-card-title">Memoria Matemática</div>
-                            <div class="game-card-desc">Encuentra las parejas entre multiplicaciones y sus resultados correctos.</div>
+                            <div class="game-card-title">4. Memoria de Runas Mágicas</div>
+                            <div class="game-card-desc">Encuentra las parejas de cartas entre multiplicaciones y sus resultados.</div>
                         </div>
 
-                        <div class="game-card-select" onclick="startJuegoAtrapa()">
-                            <div class="game-card-icon" style="background:var(--cyan-gradient);">🎈</div>
-                            <div class="game-card-title">Atrapa el Resultado</div>
-                            <div class="game-card-desc">Toca rápidamente la burbuja flotante que contenga la respuesta correcta.</div>
-                        </div>
-
-                        <div class="game-card-select" onclick="startJuegoPersonajes()">
-                            <div class="game-card-icon" style="background:var(--gold-gradient);">🧙‍♂️</div>
-                            <div class="game-card-title">¿Quién tiene la respuesta?</div>
-                            <div class="game-card-desc">Descubre cuál personaje sostiene el número correcto antes de equivocarte.</div>
-                        </div>
-
-                        <div class="game-card-select" onclick="startJuegoTiempo()">
-                            <div class="game-card-icon" style="background:var(--purple-gradient);">⚡</div>
-                            <div class="game-card-title">Desafío contra el Tiempo</div>
-                            <div class="game-card-desc">Responde la mayor cantidad de operaciones posibles antes de que terminen los 30s.</div>
-                        </div>
-
+                        <!-- JUEGO 5: DETECTIVE MATEMÁTICO -->
                         <div class="game-card-select" onclick="startJuegoDetective()">
                             <div class="game-card-icon" style="background:var(--green-gradient);">🕵️</div>
-                            <div class="game-card-title">Detective Matemático</div>
-                            <div class="game-card-desc">Analiza las pistas secretas para adivinar cuál es el número misterioso oculto.</div>
+                            <div class="game-card-title">5. Detective de las Runas</div>
+                            <div class="game-card-desc">Analiza pistas místicas para descubrir el número secreto oculto.</div>
                         </div>
                     </div>
 
                     <!-- Arena de Juego Activa -->
                     <div class="game-arena-container" id="gameArenaContainer" style="display:none;">
                         <div class="game-top-bar">
-                            <button class="btn-icon" onclick="showGamesMenu()">⬅️ Volver a Juegos</button>
-                            <h4 id="arenaTitle" style="color:var(--primary); font-size:1.5rem;">Juego en Curso</h4>
+                            <button class="btn-icon" onclick="showGamesMenu()">⬅️ Volver al Mapa de Juegos</button>
+                            <h4 id="arenaTitle" style="color:var(--primary); font-size:1.5rem;">Misión en Curso</h4>
                             <div class="game-score-badge" id="gameScoreDisplay">Puntos: 0</div>
                         </div>
 
@@ -207,45 +214,44 @@
                     </div>
                 </section>
 
-                <!-- ==================== VISTA 4: MI PROGRESO Y LOGROS ==================== -->
+                <!-- ==================== VISTA 4: SALÓN DE TROFEOS ==================== -->
                 <section id="view-progreso" class="view-section">
                     <div class="section-header">
-                        <h3 class="section-title">🏆 Salón de Trofeos y Estadísticas</h3>
+                        <h3 class="section-title">🏆 Salón de Trofeos y Cofres del Tesoro</h3>
                     </div>
 
-                    <!-- Resumen de Estadísticas -->
-                    <div class="welcome-banner" style="background:linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%); border-color:#86efac; margin-bottom:25px;">
+                    <div class="welcome-banner" style="background:linear-gradient(135deg, #1e1b4b 0%, #311042 100%); border-color:var(--crystal-gold); margin-bottom:25px;">
                         <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:20px; width:100%; text-align:center;">
                             <div>
-                                <div style="font-size:2.4rem; font-weight:800; color:var(--accent-yellow);" id="statsTotalPts">0</div>
-                                <div style="font-size:0.95rem; font-weight:700; color:var(--text-muted);">Puntos Totales</div>
+                                <div style="font-size:2.4rem; font-weight:800; color:var(--crystal-gold);" id="statsTotalPts">0</div>
+                                <div style="font-size:0.95rem; font-weight:700; color:rgba(255,255,255,0.8);">Puntos de Energía</div>
                             </div>
                             <div>
-                                <div style="font-size:2.4rem; font-weight:800; color:var(--accent-yellow);" id="statsTotalStars">0</div>
-                                <div style="font-size:0.95rem; font-weight:700; color:var(--text-muted);">Estrellas</div>
+                                <div style="font-size:2.4rem; font-weight:800; color:var(--crystal-gold);" id="statsTotalStars">0</div>
+                                <div style="font-size:0.95rem; font-weight:700; color:rgba(255,255,255,0.8);">Estrellas Místicas</div>
                             </div>
                             <div>
-                                <div style="font-size:2.4rem; font-weight:800; color:var(--primary);" id="statsLevel">Nivel 1</div>
-                                <div style="font-size:0.95rem; font-weight:700; color:var(--text-muted);">Nivel de Rango</div>
+                                <div style="font-size:2.4rem; font-weight:800; color:var(--crystal-cyan);" id="statsLevel">Nivel 1</div>
+                                <div style="font-size:0.95rem; font-weight:700; color:rgba(255,255,255,0.8);">Rango de Héroe</div>
                             </div>
                             <div>
                                 <div style="font-size:2.4rem; font-weight:800; color:var(--accent-green);" id="statsSimceBest">--</div>
-                                <div style="font-size:0.95rem; font-weight:700; color:var(--text-muted);">Mejor SIMCE</div>
+                                <div style="font-size:0.95rem; font-weight:700; color:rgba(255,255,255,0.8);">Mejor SIMCE</div>
                             </div>
                         </div>
                     </div>
 
-                    <h4 style="color:var(--text-dark); margin-bottom:15px; font-size:1.4rem;">Insignias y Medallas Desbloqueadas:</h4>
+                    <h4 style="color:var(--text-dark); margin-bottom:15px; font-size:1.4rem;">Cofres del Tesoro e Insignias:</h4>
                     <div class="tables-grid" id="logrosGrid">
                         <!-- Galería inyectada por progreso.js -->
                     </div>
                 </section>
 
-                <!-- ==================== VISTA 5: ENSAYO SIMCE ==================== -->
+                <!-- ==================== VISTA 5: FORTALEZA DEL GUARDIÁN SABIO ==================== -->
                 <section id="view-simce" class="view-section">
                     <div class="section-header" style="margin-bottom:15px;">
-                        <h3 class="section-title">🎓 Ensayo de Preparación Matemáticas SIMCE 4° Básico</h3>
-                        <p style="color:var(--text-muted); font-size:1.1rem;">Resuelve las 10 situaciones problemáticas contextualizadas.</p>
+                        <h3 class="section-title">🐉 El Desafío del Guardián Sabio (SIMCE Final)</h3>
+                        <p style="color:var(--text-muted); font-size:1.1rem;">Supera los 10 desafíos integradores del Guardián Sabio para completar la Aventura Leyenda.</p>
                     </div>
 
                     <div class="simce-container">
@@ -253,15 +259,15 @@
                         <aside class="simce-sidebar">
                             <div class="simce-sidebar-title">
                                 <span>📋</span>
-                                <span>Lista de Preguntas</span>
+                                <span>Desafíos del Guardián</span>
                             </div>
                             
                             <div class="question-nav-grid" id="simceQuestionNavGrid">
-                                <!-- Botones 1 a 10 inyectados por simce.js -->
+                                <!-- Botones 1 a 10 -->
                             </div>
 
                             <div class="simce-progress-status" id="simceAnsweredStatusText">
-                                Respondidas: 0 de 10
+                                Respondidos: 0 de 10
                             </div>
                         </aside>
 
@@ -269,22 +275,21 @@
                         <main class="simce-main-card">
                             <div>
                                 <div class="simce-context-box" id="simceContextBox">
-                                    📌 Contexto del problema...
+                                    📌 Desafío del Guardián...
                                 </div>
 
                                 <div class="simce-question-text" id="simceQuestionText">
-                                    Pregunta 1: ...
+                                    Prueba 1: ...
                                 </div>
 
                                 <div class="simce-options-grid" id="simceOptionsGrid">
-                                    <!-- Alternativas A, B, C, D inyectadas por simce.js -->
+                                    <!-- Alternativas -->
                                 </div>
                             </div>
 
-                            <!-- Barra Inferior de Navegación de Examen -->
                             <div class="simce-nav-footer">
-                                <button class="btn-simce-next" id="btnSimceNext">Siguiente Pregunta ➡️</button>
-                                <button class="btn-simce-finish" id="btnSimceFinish">Finalizar Ensayo SIMCE 🎓</button>
+                                <button class="btn-simce-next" id="btnSimceNext">Siguiente Desafío ➡️</button>
+                                <button class="btn-simce-finish" id="btnSimceFinish">Completar Prueba del Guardián 🐉</button>
                             </div>
                         </main>
                     </div>
@@ -297,9 +302,12 @@
     <!-- Carga de Scripts JavaScript -->
     <script src="JS/audio.js"></script>
     <script src="JS/state.js"></script>
+    <script src="JS/modal-sys.js"></script>
+    <script src="JS/bg-effects.js"></script>
     <script src="JS/menu.js"></script>
     <script src="JS/aprender.js"></script>
     <script src="JS/juegos.js"></script>
+    <script src="JS/juegos-drag.js"></script>
     <script src="JS/progreso.js"></script>
     <script src="JS/simce.js"></script>
 </body>

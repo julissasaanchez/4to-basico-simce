@@ -1,8 +1,8 @@
-/* MÓDULO APRENDER TABLAS - EXPLORACIÓN VISUAL Y CONCEPTUAL DE MULTIPLICACIONES */
+/* MÓDULO APRENDER TABLAS - EXPLORACIÓN VISUAL Y OBJETOS CONTABLES INTERACTIVOS */
 
 const PATTERNS_INFO = {
-    2: { title: 'Doble y Números Pares', icon: '✌️', desc: '¡Multiplicar por 2 es sumar el número consigo mismo (el doble)! Todos los resultados terminan en 0, 2, 4, 6 u 8 (números pares).' },
-    3: { title: 'Suma Repetida Triple', icon: '☘️', desc: '¡Multiplicar por 3 es contar en grupos de 3! La suma de los dígitos de sus resultados siempre es un múltiplo de 3 (3, 6, 9).' },
+    2: { title: 'Doble y Números Pares', icon: '✌️', desc: '¡Multiplicar por 2 es sumar el número consigo mismo (el doble)! Todos los resultados terminan en 0, 2, 4, 6 u 8.' },
+    3: { title: 'Suma Repetida Triple', icon: '☘️', desc: '¡Multiplicar por 3 es contar en grupos de 3! La suma de los dígitos de sus resultados siempre es múltiplo de 3.' },
     4: { title: 'El Doble del Doble', icon: '🍀', desc: '¡El truco de la tabla del 4 es calcular el doble dos veces! Ej: 4 × 6 ➔ el doble de 6 es 12, y el doble de 12 es 24.' },
     5: { title: 'Finaliza en 0 o 5', icon: '🖐️', desc: '¡Facilísimo! Todos los resultados de la tabla del 5 terminan en 0 (si es par) o en 5 (si es impar).' },
     6: { title: 'El Doble del 3', icon: '🎲', desc: 'Los resultados de la tabla del 6 son exactamente el doble de los resultados de la tabla del 3. ¡Todos son números pares!' },
@@ -12,10 +12,12 @@ const PATTERNS_INFO = {
     10: { title: 'Agrega un Cero', icon: '🚀', desc: '¡La tabla más rápida! Para multiplicar cualquier número por 10, simplemente escribe el número y agrégale un 0 al final.' }
 };
 
-const ITEM_EMOJIS = ['🍎', '⭐', '🚀', '💎', '🚗', '🐱', '⚽', '🍦', '🎁'];
+const ITEM_EMOJIS = ['🍎', '🌸', '⭐', '🚀', '💎', '🚗', '🐱', '⚽', '🍦', '🎁'];
 
 let currentSelectedTable = 2;
 let currentMultiplier = 1;
+let totalInteractiveItems = 0;
+let selectedItemsCount = 0;
 
 window.initAprenderModule = function() {
     renderTablePills();
@@ -62,6 +64,8 @@ function updateVisualizer() {
     }
 
     const res = currentSelectedTable * currentMultiplier;
+    totalInteractiveItems = res;
+    selectedItemsCount = 0;
 
     // Actualizar ecuación
     if (eqDisplay) {
@@ -70,25 +74,92 @@ function updateVisualizer() {
             <span class="eq-times">×</span>
             <span class="eq-number">${currentMultiplier}</span>
             <span class="eq-equals">=</span>
-            <span class="eq-number eq-result">${res}</span>
+            <span class="eq-number eq-result" id="eqResultDisplay">${res}</span>
         `;
     }
 
-    // Renderizar representación de grupos de objetos
+    // Renderizar representación de grupos con OBJETOS CONTABLES INTERACTIVOS
     if (visualGroups) {
-        visualGroups.innerHTML = '';
+        visualGroups.innerHTML = `
+            <div style="width:100%; text-align:center; margin-bottom:12px;">
+                <span id="counterStatusBadge" style="font-size:1.1rem; font-weight:700; color:var(--primary); background:#e0e7ff; padding:6px 16px; border-radius:20px;">
+                    👉 ¡Haz clic en los objetos para contarlos!: 0 / ${totalInteractiveItems}
+                </span>
+                <button id="btnResetCount" style="margin-left:10px; padding:4px 12px; background:#f1f5f9; border:1px solid #cbd5e1; border-radius:12px; font-weight:700; cursor:pointer;">🔄 Reiniciar Conteo</button>
+            </div>
+            <div id="interactiveItemsWrapper" style="display:flex; flex-wrap:wrap; justify-content:center; gap:14px; width:100%;"></div>
+        `;
+
+        const wrapper = document.getElementById('interactiveItemsWrapper');
         const emoji = ITEM_EMOJIS[(currentSelectedTable - 2) % ITEM_EMOJIS.length];
 
+        let globalItemIndex = 0;
         for (let g = 0; g < currentMultiplier; g++) {
             const groupBox = document.createElement('div');
             groupBox.className = 'group-box';
-            
-            let itemsHTML = '';
+            groupBox.style.position = 'relative';
+
+            const groupLabel = document.createElement('span');
+            groupLabel.style.position = 'absolute';
+            groupLabel.style.top = '-10px';
+            groupLabel.style.left = '10px';
+            groupLabel.style.background = 'var(--primary)';
+            groupLabel.style.color = 'white';
+            groupLabel.style.fontSize = '0.75rem';
+            groupLabel.style.padding = '2px 8px';
+            groupLabel.style.borderRadius = '8px';
+            groupLabel.style.fontWeight = '800';
+            groupLabel.textContent = `Grupo ${g + 1}`;
+            groupBox.appendChild(groupLabel);
+
             for (let item = 0; item < currentSelectedTable; item++) {
-                itemsHTML += `<span class="item-icon">${emoji}</span>`;
+                globalItemIndex++;
+                const itemElem = document.createElement('div');
+                itemElem.className = 'item-icon interactive-countable';
+                itemElem.setAttribute('data-counted', 'false');
+                itemElem.style.cursor = 'pointer';
+                itemElem.style.transition = 'transform 0.2s, filter 0.2s, background 0.2s';
+                itemElem.style.borderRadius = '50%';
+                itemElem.style.padding = '4px';
+                itemElem.textContent = emoji;
+
+                itemElem.addEventListener('click', () => {
+                    const isCounted = itemElem.getAttribute('data-counted') === 'true';
+                    if (!isCounted) {
+                        itemElem.setAttribute('data-counted', 'true');
+                        itemElem.style.background = '#fde047';
+                        itemElem.style.boxShadow = '0 0 12px #f59e0b';
+                        itemElem.style.transform = 'scale(1.25)';
+                        selectedItemsCount++;
+                        if (window.audio) audio.playClick();
+                    } else {
+                        itemElem.setAttribute('data-counted', 'false');
+                        itemElem.style.background = 'transparent';
+                        itemElem.style.boxShadow = 'none';
+                        itemElem.style.transform = 'scale(1)';
+                        selectedItemsCount--;
+                        if (window.audio) audio.playClick();
+                    }
+                    updateCounterBadge();
+                });
+
+                groupBox.appendChild(itemElem);
             }
-            groupBox.innerHTML = itemsHTML;
-            visualGroups.appendChild(groupBox);
+            wrapper.appendChild(groupBox);
+        }
+
+        const btnReset = document.getElementById('btnResetCount');
+        if (btnReset) {
+            btnReset.addEventListener('click', () => {
+                document.querySelectorAll('.interactive-countable').forEach(el => {
+                    el.setAttribute('data-counted', 'false');
+                    el.style.background = 'transparent';
+                    el.style.boxShadow = 'none';
+                    el.style.transform = 'scale(1)';
+                });
+                selectedItemsCount = 0;
+                updateCounterBadge();
+            });
         }
     }
 
@@ -107,10 +178,28 @@ function updateVisualizer() {
         for (let k = 1; k <= 10; k++) {
             const item = document.createElement('div');
             item.className = `seq-item ${k === currentMultiplier ? 'active-seq' : ''}`;
-            item.style.background = k === currentMultiplier ? 'var(--primary)' : 'rgba(255,255,255,0.08)';
             item.innerHTML = `<small>${currentSelectedTable}×${k}</small><br><strong>${currentSelectedTable * k}</strong>`;
             tableSeqGrid.appendChild(item);
         }
+    }
+}
+
+function updateCounterBadge() {
+    const badge = document.getElementById('counterStatusBadge');
+    if (!badge) return;
+
+    badge.textContent = `👉 ¡Has contado ${selectedItemsCount} de ${totalInteractiveItems} elementos! (${currentMultiplier} grupos de ${currentSelectedTable})`;
+
+    if (selectedItemsCount === totalInteractiveItems && totalInteractiveItems > 0) {
+        badge.style.background = '#dcfce7';
+        badge.style.color = '#166534';
+        badge.textContent = `🎉 ¡Completaste el conteo! ${currentMultiplier} grupos de ${currentSelectedTable} es igual a ${totalInteractiveItems}.`;
+        if (window.modalSys) {
+            modalSys.showToast(`🎉 ¡Genial! Has contado los ${totalInteractiveItems} elementos correctamente.`, 'success', '⭐');
+        }
+    } else {
+        badge.style.background = '#e0e7ff';
+        badge.style.color = 'var(--primary)';
     }
 }
 
@@ -127,10 +216,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnPracticarTabla = document.getElementById('btnPracticarTabla');
     if (btnPracticarTabla) {
         btnPracticarTabla.addEventListener('click', () => {
-            if (window.audio) audio.playStar();
-            // Marcar avance en la tabla actual
             stateMgr.updateTableProgress(currentSelectedTable, 3, 100);
-            alert(`🎉 ¡Excelente! Has completado y dominado la Tabla del ${currentSelectedTable}. ¡Has ganado 3 Estrellas!`);
+            if (window.modalSys) {
+                modalSys.showSuccess('¡Misión Cumplida! ⭐', `¡Felicitaciones! Has dominado la Tabla del ${currentSelectedTable} y ganaste 3 Estrellas.`);
+            }
             if (window.refreshDashboardUI) window.refreshDashboardUI();
         });
     }

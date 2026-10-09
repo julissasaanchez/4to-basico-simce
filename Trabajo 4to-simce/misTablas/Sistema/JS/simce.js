@@ -114,7 +114,7 @@ const SIMCE_QUESTIONS = [
 ];
 
 let currentSimceQuestionIdx = 0;
-let simceUserAnswers = {}; // { qId: selectedOptionIndex }
+let simceUserAnswers = {};
 
 window.initSimceModule = function() {
     currentSimceQuestionIdx = 0;
@@ -209,31 +209,42 @@ function renderSimceQuestionCard() {
 
 function finishSimceExam() {
     const answeredCount = Object.keys(simceUserAnswers).length;
+    
+    const submitExam = () => {
+        let correctCount = 0;
+        SIMCE_QUESTIONS.forEach(q => {
+            const uAns = simceUserAnswers[q.id];
+            if (uAns !== undefined && q.options[uAns].correct) {
+                correctCount++;
+            }
+        });
+
+        stateMgr.recordSimceResult(correctCount);
+        const simcePts = Math.round(200 + (correctCount * 15));
+
+        if (window.modalSys) {
+            modalSys.showSuccess(
+                '🎓 ¡Ensayo SIMCE Finalizado!',
+                `¡Felicitaciones, ${stateMgr.state.studentName}!\n\n` +
+                `Obtuviste ${correctCount} de 10 respuestas correctas.\n` +
+                `Puntaje SIMCE Estimado: ${simcePts} Puntos.`
+            );
+        }
+
+        if (window.refreshDashboardUI) window.refreshDashboardUI();
+    };
+
     if (answeredCount < SIMCE_QUESTIONS.length) {
-        if (!confirm(`Has respondido ${answeredCount} de 10 preguntas. ¿Deseas finalizar el ensayo de todas formas?`)) {
-            return;
+        if (window.modalSys) {
+            modalSys.showConfirm(
+                '⚠️ Preguntas Pendientes',
+                `Has respondido ${answeredCount} de 10 preguntas. ¿Deseas entregar el ensayo de todas formas?`,
+                submitExam
+            );
+        } else {
+            submitExam();
         }
+    } else {
+        submitExam();
     }
-
-    let correctCount = 0;
-    SIMCE_QUESTIONS.forEach(q => {
-        const uAns = simceUserAnswers[q.id];
-        if (uAns !== undefined && q.options[uAns].correct) {
-            correctCount++;
-        }
-    });
-
-    stateMgr.recordSimceResult(correctCount);
-
-    if (window.audio) audio.playVictory();
-
-    // Mostrar modal con resultados y retroalimentación
-    const simcePts = Math.round(200 + (correctCount * 15));
-    alert(`🎓 ¡ENSAYO SIMCE FINALIZADO!\n\n` +
-          `Estudiante: ${stateMgr.state.studentName}\n` +
-          `Respuestas Correctas: ${correctCount} de 10\n` +
-          `Puntaje SIMCE Estimado: ${simcePts} Puntos\n\n` +
-          `¡Felicitaciones por completar el ensayo de preparación para 4° básico!`);
-
-    if (window.refreshDashboardUI) window.refreshDashboardUI();
 }

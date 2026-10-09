@@ -1,4 +1,4 @@
-/* MOTOR DE LOS 7 MINIJUEGOS EDUCATIVOS - MIS TABLAS 4° BÁSICO */
+/* MOTOR DE LOS MINIJUEGOS EDUCATIVOS TRADICIONALES - MIS TABLAS 4° BÁSICO */
 
 let currentGameMode = null;
 let gameScore = 0;
@@ -29,15 +29,14 @@ function startArena(title) {
     updateGameScoreUI();
     if (gameTimer) clearInterval(gameTimer);
 }
+window.startArena = startArena;
 
 function updateGameScoreUI() {
     const scoreElem = document.getElementById('gameScoreDisplay');
     if (scoreElem) scoreElem.textContent = `Puntos: ${gameScore}`;
 }
 
-// ----------------------------------------------------
 // 1. MEMORIA MATEMÁTICA
-// ----------------------------------------------------
 window.startJuegoMemoria = function() {
     currentGameMode = 'memoria';
     startArena('🧠 Memoria Matemática');
@@ -85,7 +84,6 @@ window.startJuegoMemoria = function() {
             } else {
                 lockGrid = true;
                 if (firstCard.data.id === cd.id && firstCard.data.type !== cd.type) {
-                    // Match correcto
                     if (window.audio) audio.playCorrect();
                     firstCard.card.classList.add('matched');
                     card.classList.add('matched');
@@ -99,7 +97,6 @@ window.startJuegoMemoria = function() {
                         setTimeout(() => finishGameWin('¡Excelente memoria! Has encontrado todas las parejas.'), 500);
                     }
                 } else {
-                    // Fallo
                     if (window.audio) audio.playWrong();
                     setTimeout(() => {
                         firstCard.card.classList.remove('flipped');
@@ -115,9 +112,7 @@ window.startJuegoMemoria = function() {
     });
 };
 
-// ----------------------------------------------------
-// 2. ATRAPA EL RESULTADO (BURBUJAS FLOTANTES)
-// ----------------------------------------------------
+// 2. ATRAPA EL RESULTADO
 window.startJuegoAtrapa = function() {
     currentGameMode = 'atrapa';
     startArena('🎈 Atrapa el Resultado');
@@ -169,9 +164,7 @@ window.startJuegoAtrapa = function() {
     });
 };
 
-// ----------------------------------------------------
 // 4. ¿QUIÉN TIENE LA RESPUESTA?
-// ----------------------------------------------------
 window.startJuegoPersonajes = function() {
     currentGameMode = 'personajes';
     startArena('🧙‍♂️ ¿Quién tiene la respuesta?');
@@ -194,8 +187,10 @@ window.startJuegoPersonajes = function() {
         const card = document.createElement('div');
         card.className = 'character-card';
         card.innerHTML = `
-            <div class="char-img" style="font-size:3.5rem">${charData.icon}</div>
-            <div style="font-weight:700; color:white; margin-bottom:8px">${charData.name}</div>
+            <div class="char-img" style="width:80px; height:80px;">
+                <img src="${charData.svg}" alt="${charData.name}" style="width:100%; height:100%; object-fit:contain;">
+            </div>
+            <div style="font-weight:700; color:var(--text-dark); margin-bottom:8px">${charData.name}</div>
             <div class="char-sign">${val}</div>
         `;
 
@@ -214,9 +209,7 @@ window.startJuegoPersonajes = function() {
     });
 };
 
-// ----------------------------------------------------
 // 5. DESAFÍO CONTRA EL TIEMPO
-// ----------------------------------------------------
 window.startJuegoTiempo = function() {
     currentGameMode = 'tiempo';
     startArena('⚡ Desafío contra el Tiempo');
@@ -282,9 +275,7 @@ function nextSpeedQuestion() {
     });
 }
 
-// ----------------------------------------------------
 // 7. DETECTIVE MATEMÁTICO
-// ----------------------------------------------------
 window.startJuegoDetective = function() {
     currentGameMode = 'detective';
     startArena('🕵️ Detective Matemático');
@@ -309,7 +300,8 @@ window.startJuegoDetective = function() {
     clue.opts.forEach(val => {
         const btn = document.createElement('button');
         btn.className = 'btn-submit';
-        btn.style.background = 'rgba(255,255,255,0.08)';
+        btn.style.background = '#f1f5f9';
+        btn.style.color = 'var(--text-dark)';
         btn.style.border = '2px solid var(--panel-border)';
         btn.textContent = val;
 
@@ -330,7 +322,9 @@ window.startJuegoDetective = function() {
 function finishGameWin(msg) {
     if (gameTimer) clearInterval(gameTimer);
     stateMgr.addPoints(gameScore);
-    alert(`${msg}\n\n⭐ Has ganado +${gameScore} Puntos.`);
+    if (window.modalSys) {
+        modalSys.showSuccess('¡Desafío Completado! ⭐', `${msg}\n\nHas ganado +${gameScore} Puntos.`);
+    }
     if (window.refreshDashboardUI) window.refreshDashboardUI();
     showGamesMenu();
 }

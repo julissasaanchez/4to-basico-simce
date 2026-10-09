@@ -1,0 +1,87 @@
+/* EFECTOS Y ELEMENTOS MÍSTICOS DE AVENTURA - MIS TABLAS 4° BÁSICO */
+
+.bg-animated-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Cristales de Energía Flotantes e Interactivos */
+.floating-crystal-item {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.6));
+    transition: transform 0.2s ease, filter 0.2s ease;
+    animation: crystalFloat 10s ease-in-out infinite;
+}
+
+.floating-crystal-item:hover {
+    transform: scale(1.3) rotate(15deg);
+    filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.9));
+}
+
+@keyframes crystalFloat {
+    0% { transform: translateY(105vh) rotate(0deg); }
+    50% { transform: translateY(45vh) rotate(180deg); }
+    100% { transform: translateY(-15vh) rotate(360deg); }
+}
+
+/* Estrellas Místicas y Partículas de Energía */
+.mystic-star {
+    position: absolute;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #06b6d4;
+    animation: starTwinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes starTwinkle {
+    0% { opacity: 0.2; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1.4); }
+}
+
+/* Portales Mágicos y Cofres Animados */
+.portal-node {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-bounce);
+}
+
+.portal-node.locked {
+    filter: grayscale(0.8) opacity(0.5);
+    cursor: not-allowed;
+}
+
+.portal-node.unlocked {
+    cursor: pointer;
+    animation: portalGlow 3s ease-in-out infinite;
+}
+
+.portal-node.unlocked:hover {
+    transform: scale(1.15) translateY(-5px);
+}
+
+.treasure-chest-icon {
+    font-size: 3rem;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: drop-shadow(0 6px 12px rgba(245, 158, 11, 0.4));
+}
+
+.treasure-chest-icon:hover {
+    transform: scale(1.25) rotate(-5deg);
+}

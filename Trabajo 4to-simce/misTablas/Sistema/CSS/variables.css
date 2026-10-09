@@ -1,67 +1,63 @@
-/* VARIABLES Y SISTEMA DE DISEÑO CLARO E INFANTIL - MIS TABLAS 4° BÁSICO */
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+/* VARIABLES Y SISTEMA DE DISEÑO FANTÁSTICO DE AVENTURA - MIS TABLAS 4° BÁSICO */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap');
 
 :root {
-    /* Paleta Principal Pastel & Viva */
-    --primary: #4f46e5;
-    --primary-hover: #4338ca;
-    --primary-light: #818cf8;
+    /* Paleta de Aventura Mística / Videojuego Fantástico */
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --primary-dark: #3730a3;
     --secondary: #ec4899;
     --secondary-hover: #db2777;
     
-    /* Colores Infantiles Pastel */
-    --pastel-sky: #e0f2fe;
-    --pastel-pink: #fce7f3;
-    --pastel-yellow: #fef3c7;
-    --pastel-green: #dcfce7;
-    --pastel-purple: #f3e8ff;
-    --pastel-orange: #ffedd5;
+    /* Acentos de Energía Mística */
+    --crystal-cyan: #06b6d4;
+    --crystal-purple: #a855f7;
+    --crystal-gold: #f59e0b;
+    --crystal-green: #10b981;
+    --crystal-orange: #f97316;
 
-    /* Acentos Vivos */
-    --accent-yellow: #f59e0b;
-    --accent-green: #10b981;
-    --accent-cyan: #0284c7;
-    --accent-purple: #9333ea;
-    --accent-orange: #f97316;
+    /* Gradientes Místicos de Mundos */
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 35%, #311042 70%, #1e293b 100%);
+    --bg-world1: linear-gradient(135deg, #1e1b4b 0%, #311042 100%);
+    --bg-world2: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
+    --bg-world3: linear-gradient(135deg, #78350f 0%, #451a03 100%);
+    --bg-world4: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    --bg-world5: linear-gradient(135deg, #581c87 0%, #3b0764 100%);
 
-    /* Gradientes Luminosos y Alegres */
-    --bg-gradient: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 35%, #fce7f3 70%, #fef3c7 100%);
-    --card-gradient: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-    --card-hover-gradient: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
-    --gold-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-    --green-gradient: linear-gradient(135deg, #34d399 0%, #10b981 100%);
-    --pink-gradient: linear-gradient(135deg, #f472b6 0%, #ec4899 100%);
+    --card-gradient: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
+    --gold-gradient: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+    --green-gradient: linear-gradient(135deg, #34d399 0%, #059669 100%);
+    --pink-gradient: linear-gradient(135deg, #f472b6 0%, #db2777 100%);
     --cyan-gradient: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
-    --purple-gradient: linear-gradient(135deg, #c084fc 0%, #9333ea 100%);
+    --purple-gradient: linear-gradient(135deg, #c084fc 0%, #7e22ce 100%);
 
-    /* Modos Claros Legibles para Niños */
-    --bg-light: #f8fafc;
-    --panel-bg: rgba(255, 255, 255, 0.92);
-    --panel-border: rgba(99, 102, 241, 0.18);
+    /* Colores de Legibilidad y Paneles 3D */
+    --panel-bg: rgba(255, 255, 255, 0.94);
+    --panel-border: rgba(168, 85, 247, 0.25);
     --text-main: #1e293b;
     --text-muted: #64748b;
     --text-dark: #0f172a;
+    --text-light: #f8fafc;
 
-    /* Sombras Suaves Esponjosas */
-    --soft-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-    --hover-shadow: 0 20px 30px -10px rgba(99, 102, 241, 0.22);
-    --glow-gold: 0 0 20px rgba(245, 158, 11, 0.4);
-    --glow-green: 0 0 20px rgba(16, 185, 129, 0.3);
-    
+    /* Sombras 3D y Auras de Energía */
+    --soft-shadow: 0 12px 32px rgba(15, 23, 42, 0.2);
+    --glow-portal: 0 0 25px rgba(168, 85, 247, 0.5);
+    --glow-gold: 0 0 22px rgba(245, 158, 11, 0.5);
+    --glow-cyan: 0 0 22px rgba(6, 182, 212, 0.5);
+
     /* Tipografía */
     --font-heading: 'Fredoka', cursive, sans-serif;
     --font-body: 'Outfit', sans-serif;
 
-    /* Bordes Redondeados e Infantiles */
-    --radius-sm: 12px;
-    --radius-md: 20px;
-    --radius-lg: 28px;
-    --radius-xl: 36px;
-    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Bordes y Transiciones 3D */
+    --radius-sm: 14px;
+    --radius-md: 22px;
+    --radius-lg: 30px;
+    --radius-xl: 38px;
     --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Resets y Base */
+/* Base resets */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -90,42 +86,36 @@ button {
     cursor: pointer;
     border: none;
     outline: none;
-    transition: transform var(--transition-bounce), box-shadow var(--transition-fast), background var(--transition-fast);
+    transition: transform var(--transition-bounce), box-shadow 0.2s ease, background 0.2s ease;
 }
 
 button:active {
-    transform: scale(0.95) !important;
+    transform: scale(0.94) !important;
 }
 
-/* Animaciones Infantiles Reutilizables */
+/* Animaciones Místicas */
 @keyframes float {
     0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-8px) rotate(2deg); }
+    50% { transform: translateY(-10px) rotate(1.5deg); }
 }
 
-@keyframes pulseGlow {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.04); }
+@keyframes portalGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); filter: brightness(1); }
+    50% { box-shadow: 0 0 35px rgba(6, 182, 212, 0.8); filter: brightness(1.15); }
+}
+
+@keyframes runeRotate {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.1); }
+    100% { transform: rotate(360deg) scale(1); }
 }
 
 @keyframes popIn {
-    0% { opacity: 0; transform: scale(0.7); }
-    70% { transform: scale(1.06); }
+    0% { opacity: 0; transform: scale(0.6); }
+    70% { transform: scale(1.08); }
     100% { opacity: 1; transform: scale(1); }
 }
 
-@keyframes wiggle {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(-5deg); }
-    75% { transform: rotate(5deg); }
-}
-
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(25px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.anim-float { animation: float 3.5s ease-in-out infinite; }
-.anim-pulse { animation: pulseGlow 2.2s ease-in-out infinite; }
+.anim-float { animation: float 4s ease-in-out infinite; }
+.anim-portal { animation: portalGlow 3s ease-in-out infinite; }
 .anim-pop { animation: popIn var(--transition-bounce) forwards; }
-.anim-wiggle { animation: wiggle 2s ease-in-out infinite; }
